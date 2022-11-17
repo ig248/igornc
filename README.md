@@ -16,7 +16,13 @@ All mechanics are maximally over-engineered to compensate for a poorly conceived
 
 - dual head
 - 1.75mm bowden extruders (Titan from E3D)
-- custom cooling blower provides a thin horizontal sheet of air
+- internal air guide creates a directed planar sheet of air
+- printed ABS duct for better heat resistance
+- flexible TPU adapter improves fan connection to the duct
+
+| blower components | blower outlet |
+| --- | --- |
+| ![Blower assembly](img/blower_parts.jpeg?raw=true "Blower assembly") | ![Air duct](img/blower_back.jpeg?raw=true "Air duct") |
 
 ## Print bed
 - print area is 360x360mmm
