@@ -10,12 +10,23 @@ All mechanics are maximally over-engineered to compensate for a poorly conceived
 - endplates are machine 8mm aluminium
 - transition fit for NEMA17 motor journals
 - press fit for flanged bearings
-
+- 3 NEMA17 steppers with integrated ~500mm leadscrews
+- all 3 axes differ in gantry plates only, but use otherwise interchangable components
 ## Print head
 
 - dual head
 - 1.75mm bowden extruders (Titan from E3D)
 - custom cooling blower provides a thin horizontal sheet of air
+
+## Print bed
+- print area is 360x360mmm
+### First iteration
+- bakelite heated bed 
+- overengineered kinematic mounts: machined, hardened, and surface ground V-Blocks locating on cap screw heads :D
+
+### Second iteration
+- machined from 6mm aluminium
+- magnetic print surface reused from Ender 5 Plus
 
 ## Electronics and control
 ![Electronics](img/enclosure.jpeg?raw=true "Electronics")
@@ -29,3 +40,14 @@ All mechanics are maximally over-engineered to compensate for a poorly conceived
 ## Settings and macros
 ### Homing
 Homing is done switch-less using stall detection.
+
+### Bed probing
+Currently done by detecting contact between print head and a steel feeler gauge :D
+
+### Bed leveling
+- G29.1 allows loading an interpolated height map for a given temperature using RepRap firmware support for "meta-commands".
+
+### Macros
+`triggerX.g` allow customizing button actions, e.g. the "Green" button will resume print if paused, or print last file again if not currently printing.
+
+`load.g`/`unload.g` provide parametrized macros to simplify filament management.

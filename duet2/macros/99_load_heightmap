@@ -1,0 +1,6 @@
+; load interpolated height map for the current bed temperature
+; Optional parameter S sets a different bed temparature from current
+if exists(param.S)
+   G29.1 S{param.S)
+else
+   G29.1
