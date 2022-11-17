@@ -25,8 +25,11 @@ All mechanics are maximally over-engineered to compensate for a poorly conceived
 - overengineered kinematic mounts: machined, hardened, and surface ground V-Blocks locating on cap screw heads :D
 
 ### Second iteration
-- machined from 6mm aluminium
-- magnetic print surface reused from Ender 5 Plus
+![Bed v2](img/aluminium_bed.jpeg?raw=true "Bed v2")
+
+- machined from 6mm aluminium, heater fully recessed
+- removable magnetic print surface from Ender 5 Plus
+- rigidly bolted to the X gantry to reduce vibrations
 
 ## Electronics and control
 ![Electronics](img/enclosure.jpeg?raw=true "Electronics")
