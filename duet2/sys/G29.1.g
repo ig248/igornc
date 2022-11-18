@@ -10,6 +10,6 @@ var temp_str = "" ^ var.maptemp
 if var.maptemp < 100
 	set var.temp_str = "0" ^ var.temp_str
 
-var filename = "heightmap_" ^ var.temp_str ^ "C_interp.csv"
+var filename = "heightmaps/heightmap_" ^ var.temp_str ^ "C_interp.csv"
 echo "Loading heightmap " ^ var.filename
 G29 S1 P{var.filename}
