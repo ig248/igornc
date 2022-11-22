@@ -37,7 +37,7 @@ M84 S30                                           ; Set idle timeout
 
 ; Axis Limits
 M208 X-180 Y-180 Z-1.36 S1                         ; set axis minima
-M208 X179 Y180 Z240 S0                         ; set axis maxima
+M208 X179 Y180 Z260 S0                         ; set axis maxima
 
 ; Endstops
 M915 X S5 F0 H200 R0                       ; configure stall detection
