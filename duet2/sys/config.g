@@ -28,20 +28,25 @@ M350 X16 Y16 Z16 E16:16 I1                     ; configure microstepping with in
 ;; Steps per Unit (Extruder) = Motor Steps * Micro-stepping * Gear Ratio / (Hobb Diameter * Pi)
 ;; 200 * 16 * 3 / (7.3 * 3.142) = 418.5
 M92 X400.00 Y400.00 Z400.00 E418.5:418.5          ; set steps per mm
-M566 X1000.00 Y1000.00 Z100.00 E500.00:120.00     ; set maximum instantaneous speed changes (mm/min)
 M203 X6000.00 Y6000.00 Z1000.00 E1200.00:1200.00  ; set maximum speeds (mm/min)
-M201 X1500.00 Y1500.00 Z100.00 E250.00:250.00     ; set accelerations (mm/s^2)
+M566 X1000.00 Y1000.00 Z100.00 E500.00:120.00     ; set maximum instantaneous speed changes (mm/min)
+M201 X2000.00 Y2000.00 Z100.00 E250.00:250.00     ; set accelerations (mm/s^2)
+;; Faster values for tuning:
+;M203 X10000.00 Y10000.00 Z1000.00 E1200.00:1200.00  ; set maximum speeds (mm/min)
+;M566 X5000.00 Y5000.00 Z100.00 E500.00:120.00     ; set maximum instantaneous speed changes (mm/min)
+;M201 X5000.00 Y5000.00 Z100.00 E250.00:250.00     ; set accelerations (mm/s^2)
+;;
 M906 X1600 Y1600 Z1600 I30                        ; set motor currents (mA) and motorZyklop Pocket idle factor in per cent (rated: 1680mA per phase)
 M906 E1000:1000 I30                  			  ; set motor currents (mA) and motorZyklop Pocket idle factor in per cent (rated: 1680mA per phase)
 M84 S30                                           ; Set idle timeout
 
 ; Axis Limits
-M208 X-180 Y-180 Z-1.36 S1                         ; set axis minima
-M208 X179 Y180 Z260 S0                         ; set axis maxima
+M208 X-180 Y-180 Z-3.19 S1                         ; set axis minima
+M208 X179 Y180 Z258 S0                         ; set axis maxima
 
 ; Endstops
 M915 X S5 F0 H200 R0                       ; configure stall detection
-M915 Y S5 F0 H200 R0                       ; configure stall detection
+M915 Y S6 F0 H200 R0                       ; configure stall detection
 M915 Z S5 F0 H200 R1                       ; configure stall detection
 ; M574 X1 S3                                   ; configure sensorless endstop for low end of X (bed on right)
 M574 X2 S3                                     ; configure sensorless endstop for high end of X (bed on left)
@@ -53,7 +58,7 @@ M574 Z1 S3                                     ; configure sensorless endstop fo
 ; Z-Probe
 M558 P8 C"!^zprobe.in" F300:100 A6 S0.05 T3000		   ; normally open probe
 G31 P500 X0 Y0 Z0.3
-M557 X{move.axes[0].min + 10, move.axes[0].max - 10} Y{move.axes[1].min + 10, move.axes[1].max - 10} P7 ; define mesh grid
+M557 X{move.axes[0].min + 10, move.axes[0].max - 10} Y{move.axes[1].min + 10, move.axes[1].max - 10} P7 ; define mesh grid - P7
 
 ; Heaters
 ;; Bed
@@ -120,3 +125,10 @@ M581 P6 T6 S1
 M950 J7 C"!^exp.e4stop"
 M581 P7 T7 S1
 ;; Brown wire - output only!
+
+; Accelerometer and input shaping
+;; LIS3DSH - 1600Hz with 16-bit resolution
+;; chip Z = printer +X (0); chip X = printer +Z (2) --> I02
+M955 P0 C"spi.cs4+spi.cs3" I02 S1600 R16
+;; Input shaping
+M593 P"ei3" F12.0 S0.05
